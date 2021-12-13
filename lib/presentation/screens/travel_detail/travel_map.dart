@@ -52,7 +52,7 @@ class _TravelMapState extends State<TravelMap> {
         addMarker();
       },
       markers: _markers,
-      myLocationButtonEnabled: true,
+      myLocationButtonEnabled: false,
       zoomControlsEnabled: false,
       myLocationEnabled: true,
       initialCameraPosition: CameraPosition(

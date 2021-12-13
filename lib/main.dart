@@ -70,7 +70,7 @@ List<ScheduleEntity> generateList() {
         scheduleTitle: '2021/12/1（水）深セン',
         workScheduleList: dummyWorkScheduleList2));
   dummyList.add(
-      ScheduleEntity(scheduleTitle: '2021/12/2（水）深セン'));
+      ScheduleEntity(scheduleTitle: '2021/12/2（水）深セン',workScheduleList: dummyWorkScheduleList2));
 
   return dummyList;
 }

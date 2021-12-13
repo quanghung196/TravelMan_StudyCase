@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:study_case/common/constants/size_constants.dart';
+import 'package:study_case/common/extensions/size_extensions.dart';
 import 'package:study_case/presentation/screens/travel_detail/travel_detail_app_bar_widget.dart';
 import 'package:study_case/presentation/screens/travel_detail/travel_infomation.dart';
 import 'package:study_case/presentation/screens/travel_detail/travel_map.dart';
@@ -18,22 +20,13 @@ class _TravelDetailScreenState extends State<TravelDetailScreen> {
       body: Column(
         children: [
           const OverViewAppbarWidget(),
-          Expanded(
-              child: Stack(
-                fit: StackFit.expand,
-                children: const [
-                  FractionallySizedBox(
-                    alignment: Alignment.topCenter,
-                    heightFactor: 0.25,
-                    child: TravelMap(),
-                  ),
-                  FractionallySizedBox(
-                    alignment: Alignment.bottomCenter,
-                    heightFactor: 0.75,
-                    child: TravelInfomation(),
-                  )
-                ],
-              ))
+          SizedBox(
+            height: Sizes.dimen_80.h,
+            child: const TravelMap(),
+          ),
+          const Expanded(
+            child: TravelInfomation(),
+          )
         ],
       ),
     );

@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:study_case/presentation/screens/travel_detail/overview_tab_widget/overview_schedule.dart';
+import 'package:study_case/domain/entities/schedule_entity.dart';
+
+import '../../../main.dart';
+import 'overview_tab_widget/custom_schedule_widget/custom_schedule_widget.dart';
 
 class TravelInfomation extends StatefulWidget {
   const TravelInfomation({Key? key}) : super(key: key);
@@ -10,6 +13,7 @@ class TravelInfomation extends StatefulWidget {
 }
 
 class _TravelInfomationState extends State<TravelInfomation> {
+  final List<ScheduleEntity> scheduleList = generateList();
   int selectedIndex = 0;
 
   @override
@@ -56,7 +60,7 @@ class _TravelInfomationState extends State<TravelInfomation> {
 
   Widget getBody() {
     if (selectedIndex == 0) {
-      return const OverviewSchedule();
+      return CustomScheduleWidget(scheduleList: scheduleList);
     } else {
       return const Center(
         child: Text('data'),
