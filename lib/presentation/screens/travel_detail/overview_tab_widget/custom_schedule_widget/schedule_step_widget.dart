@@ -17,20 +17,14 @@ class ScheduleStepWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double scheduleViewHorizontalPadding = Sizes.dimen_16;
-    const double scheduleTitlePadding = Sizes.dimen_8;
-    const double scheduleTitleSize = Sizes.dimen_18;
     const Color scheduleTitleColor = Color(0xFF98A9B0);
     const double circleStepWidth = Sizes.dimen_45;
     const double intrinsicHeightWidth = Sizes.dimen_1;
     const double cirleStepBorderWidth = Sizes.dimen_1;
-    const double stepListVerticalPadding = Sizes.dimen_6;
-    const double stepListItemSeparator = Sizes.dimen_3;
     const Color circleStepColor = Color(0xFF98A9B0);
 
     return Padding(
-      padding:
-          EdgeInsets.symmetric(horizontal: scheduleViewHorizontalPadding.w),
+      padding: EdgeInsets.symmetric(horizontal: Sizes.dimen_8.w),
       child: Column(
         children: [
           Row(
@@ -52,14 +46,14 @@ class ScheduleStepWidget extends StatelessWidget {
                     Text(
                       (stepIndex + 1).toString(),
                       style: TextStyle(
-                          color: circleStepColor,
+                          color: scheduleTitleColor,
                           fontSize: Sizes.dimen_16.sp,
                           height: 1.0),
                     ),
                     Text(
                       '日目',
                       style: TextStyle(
-                          color: circleStepColor,
+                          color: scheduleTitleColor,
                           fontSize: Sizes.dimen_10.sp,
                           height: 1.0),
                     ),
@@ -67,13 +61,11 @@ class ScheduleStepWidget extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: scheduleTitlePadding),
+                padding: EdgeInsets.symmetric(horizontal: Sizes.dimen_8.w),
                 child: Text(
                   scheduleEntity.scheduleTitle,
                   style: TextStyle(
-                      fontSize: scheduleTitleSize.sp,
-                      color: scheduleTitleColor),
+                      fontSize: Sizes.dimen_18.sp, color: scheduleTitleColor),
                 ),
               )
             ],
@@ -83,7 +75,6 @@ class ScheduleStepWidget extends StatelessWidget {
               Positioned.fill(
                 left: ((circleStepWidth - intrinsicHeightWidth) / 2).w,
                 child: Container(
-                  width: intrinsicHeightWidth.w,
                   decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
                     border: Border(
@@ -97,16 +88,17 @@ class ScheduleStepWidget extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.only(
-                    top: stepListVerticalPadding.h,
-                    bottom: stepListVerticalPadding.h,
-                    left: (circleStepWidth + scheduleTitlePadding).w),
+                    top: Sizes.dimen_6.h,
+                    bottom: Sizes.dimen_6.h,
+                    right: Sizes.dimen_8.w,
+                    left: (circleStepWidth / 2 + Sizes.dimen_16).w),
                 child: ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: scheduleEntity.workScheduleList.length + 1,
                   separatorBuilder: (context, index) {
                     return SizedBox(
-                      height: stepListItemSeparator.h,
+                      height: Sizes.dimen_3.h,
                     );
                   },
                   itemBuilder: (BuildContext context, int index) {
@@ -132,26 +124,20 @@ class ScheduleStepWidget extends StatelessWidget {
 
     return InkWell(
       onTap: () {},
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: Sizes.dimen_16.w,
-        ),
-        child: Row(
-          children: [
-            const Icon(
-              Icons.add,
-              color: iconAddColor,
-            ),
-            SizedBox(
-              width: Sizes.dimen_4.w,
-            ),
-            Text(
-              '予定を追加',
-              style:
-                  TextStyle(color: iconAddColor, fontSize: Sizes.dimen_14.sp),
-            ),
-          ],
-        ),
+      child: Row(
+        children: [
+          const Icon(
+            Icons.add,
+            color: iconAddColor,
+          ),
+          SizedBox(
+            width: Sizes.dimen_4.w,
+          ),
+          Text(
+            '予定を追加',
+            style: TextStyle(color: iconAddColor, fontSize: Sizes.dimen_14.sp),
+          ),
+        ],
       ),
     );
   }

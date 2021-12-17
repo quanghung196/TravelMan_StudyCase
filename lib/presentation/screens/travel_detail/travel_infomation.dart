@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:study_case/domain/entities/schedule_entity.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:study_case/common/constants/size_constants.dart';
+import 'package:study_case/common/extensions/size_extensions.dart';
+import 'package:study_case/presentation/blocs/custom_bottom_navigation_bar/custom_bottom_navigation_bar_bloc.dart';
 
 import '../../../main.dart';
+import 'overview_tab_widget/custom_bottom_navigation_bar_widget/custom_bottom_navigation_bar_widget.dart';
 import 'overview_tab_widget/custom_schedule_widget/custom_schedule_widget.dart';
 
 class TravelInfomation extends StatefulWidget {
@@ -13,64 +17,54 @@ class TravelInfomation extends StatefulWidget {
 }
 
 class _TravelInfomationState extends State<TravelInfomation> {
-  final List<ScheduleEntity> scheduleList = generateList();
-  int selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: getBody(),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: selectedIndex,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today_rounded),
-            label: 'Calendar',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.insert_drive_file_outlined),
-            label: 'File',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.checklist),
-            label: 'CheckList',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark_border),
-            label: 'Attachment',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.monetization_on_outlined),
-            label: 'Cost',
-          )
-        ],
-        onTap: (int index) {
-          onItemSelected(index);
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
-      ),
+    return BlocBuilder<CustomBottomNavigationBarBloc,
+        CustomBottomNavigationBarState>(
+      builder: (context, state) {
+        return Stack(
+          children: [
+            if (state is CustomBottomNavigationBarTabChanged)
+              _showWidgetByPosition[state.currentTabIndex],
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(Sizes.dimen_16.w),
+                  child: FloatingActionButton(
+                    backgroundColor: Colors.white,
+                    onPressed: () {},
+                    child: const Icon(
+                      Icons.add,
+                      color: Color(0xFF3650A5),
+                    ),
+                  ),
+                ),
+                CustomBottomNavigationBarWidget(
+                    currentTabIndex: state.currentTabIndex),
+              ],
+            ),
+          ],
+        );
+      },
     );
   }
 
-  Widget getBody() {
-    if (selectedIndex == 0) {
-      return CustomScheduleWidget(scheduleList: scheduleList);
-    } else {
-      return const Center(
-        child: Text('data'),
-      );
-    }
-  }
-
-  void onItemSelected(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
-  }
+  final List<Widget> _showWidgetByPosition = [
+    CustomScheduleWidget(scheduleList: generateList()),
+    const Center(
+      child: Text('Tab 2'),
+    ),
+    const Center(
+      child: Text('Tab 3'),
+    ),
+    const Center(
+      child: Text('Tab 4'),
+    ),
+    const Center(
+      child: Text('Tab 5'),
+    )
+  ];
 }

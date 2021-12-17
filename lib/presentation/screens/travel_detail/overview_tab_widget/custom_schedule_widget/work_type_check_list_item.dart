@@ -12,42 +12,37 @@ class WorkTypeCheckListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const Color borderColor = Color(0xFFEFF1F8);
-    const double borderWidth = Sizes.dimen_1;
-    const double borderRadius = Sizes.dimen_5;
-    const double contentPadding = Sizes.dimen_8;
-    const checkIconColor = Color(0xFFD0D6DA);
-    const double scheduleTitleSize = Sizes.dimen_14;
-    const double scheduleIconSize = Sizes.dimen_24;
+    const Color borderColor = Color(0xFFF2F3F5);
+    const Color checkIconColor = Color(0xFFD0D6DA);
 
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
           color: borderColor,
-          width: borderWidth.w,
+          width: Sizes.dimen_1.w,
           style: BorderStyle.solid,
         ),
         color: borderColor,
-        borderRadius: BorderRadius.circular(borderRadius.w),
+        borderRadius: BorderRadius.circular(Sizes.dimen_5.w),
       ),
       child: Padding(
-        padding: EdgeInsets.all(contentPadding.w),
+        padding: EdgeInsets.symmetric(horizontal: Sizes.dimen_8.w,vertical: Sizes.dimen_2.h),
         child: Row(
           children: [
             const Icon(
               Icons.check,
-              size: scheduleIconSize,
+              size: Sizes.dimen_24,
               color: checkIconColor,
             ),
             SizedBox(
-              width: contentPadding.w,
+              width: Sizes.dimen_8.w,
             ),
             Expanded(
               child: Text(
                 workScheduleEntity.workTitle,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: scheduleTitleSize.sp),
+                style: TextStyle(fontSize: Sizes.dimen_14.sp),
               ),
             ),
           ],

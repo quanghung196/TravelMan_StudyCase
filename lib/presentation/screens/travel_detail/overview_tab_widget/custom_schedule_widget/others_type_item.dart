@@ -13,29 +13,22 @@ class OthersTypeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const Color borderColor = Color(0xFFD0D6DA);
-    const double borderWidth = Sizes.dimen_1;
-    const double borderRadius = Sizes.dimen_5;
-    const double contentPadding = Sizes.dimen_8;
     const iconColor = Color(0xFFD0D6DA);
-    const scheduleTimeColor = Color(0xFF657A84);
     const scheduleSubTitleColor = Color(0xFF657A84);
-    const double scheduleTitleSize = Sizes.dimen_14;
-    const double scheduleSubTitleSize = Sizes.dimen_10;
-    const double scheduleTimeSize = Sizes.dimen_16;
     const double scheduleIconSize = Sizes.dimen_48;
 
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
           color: borderColor,
-          width: borderWidth.w,
+          width: Sizes.dimen_1_5.w,
           style: BorderStyle.solid,
         ),
         color: Colors.transparent,
-        borderRadius: BorderRadius.circular(borderRadius.w),
+        borderRadius: BorderRadius.circular(Sizes.dimen_5.w),
       ),
       child: Padding(
-        padding: EdgeInsets.all(contentPadding.w),
+        padding: EdgeInsets.all(Sizes.dimen_8.w),
         child: Row(
           children: [
             SizedBox(
@@ -43,13 +36,12 @@ class OthersTypeItem extends StatelessWidget {
               child: Text(
                 workScheduleEntity.workScheduleTime,
                 style: TextStyle(
-                  fontSize: scheduleTimeSize.sp,
-                  color: scheduleTimeColor,
+                  fontSize: Sizes.dimen_16.sp,
                 ),
               ),
             ),
             SizedBox(
-              width: contentPadding.w,
+              width: Sizes.dimen_8.w,
             ),
             if (workScheduleEntity.workType == WorkType.TRAVEL_PLANE)
               const Icon(
@@ -82,7 +74,7 @@ class OthersTypeItem extends StatelessWidget {
                 color: iconColor,
               ),
             SizedBox(
-              width: contentPadding.w,
+              width: Sizes.dimen_8.w,
             ),
             Expanded(
               child: Column(
@@ -92,7 +84,7 @@ class OthersTypeItem extends StatelessWidget {
                     workScheduleEntity.workTitle,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: scheduleTitleSize.sp),
+                    style: TextStyle(fontSize: Sizes.dimen_14.sp),
                   ),
                   if (workScheduleEntity.workSubTitle.isNotEmpty)
                     Text(
@@ -100,7 +92,7 @@ class OthersTypeItem extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        fontSize: scheduleSubTitleSize.sp,
+                        fontSize: Sizes.dimen_10.sp,
                         color: scheduleSubTitleColor,
                       ),
                     ),

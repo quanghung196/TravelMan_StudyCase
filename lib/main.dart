@@ -20,10 +20,6 @@ List<ScheduleEntity> generateList() {
   List<WorkScheduleEntity> dummyWorkScheduleList1 = [];
   dummyWorkScheduleList1
     ..add(WorkScheduleEntity(
-        workTitle: '工場スタッフと会食',
-        workType: WorkType.MEAL,
-        workScheduleTime: '12:00'))
-    ..add(WorkScheduleEntity(
         workTitle: '現地スタッフ向け手土産購入', workType: WorkType.CHECK_LIST))
     ..add(WorkScheduleEntity(
         workTitle: '深セン到着を報告', workType: WorkType.CHECK_LIST))
@@ -31,6 +27,10 @@ List<ScheduleEntity> generateList() {
         workTitle: '空港から工場へ電車移動',
         workType: WorkType.TRAVEL_TRAIN,
         workScheduleTime: '18:00'))
+    ..add(WorkScheduleEntity(
+        workTitle: '工場スタッフと会食',
+        workType: WorkType.MEAL,
+        workScheduleTime: '19:30'))
     ..add(WorkScheduleEntity(
         workTitle: '都之都大酒店',
         workType: WorkType.HOTEL,
@@ -70,7 +70,7 @@ List<ScheduleEntity> generateList() {
         scheduleTitle: '2021/12/1（水）深セン',
         workScheduleList: dummyWorkScheduleList2));
   dummyList.add(
-      ScheduleEntity(scheduleTitle: '2021/12/2（水）深セン',workScheduleList: dummyWorkScheduleList2));
+      ScheduleEntity(scheduleTitle: '2021/12/2（水）深セン'));
 
   return dummyList;
 }
